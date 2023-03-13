@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +21,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
+    Route::apiResource('programs', ProgramController::class);
+    Route::apiResource('reports', ReportController::class);
     Route::post('logout', [AuthController::class, 'logout']);
 });
